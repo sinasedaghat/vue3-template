@@ -3,26 +3,19 @@ import { onMounted, ref } from 'vue';
 import testReq from '@/services/sample'
 const dataReq: any = ref()
 
-// import http from '@/plugins/http'
-
-
-
-
-onMounted(async() => {
-  // dataReq.value = await testReq.pric()
-  
-  // await http.get('bpi/currentprice.json')
-	// 	.then(async (response) => {
-	// 		console.log('response', response)
-	// 		dataReq.value = response.data
-	// 	})
-	// 	.catch((error) => {
-  //     console.log('catch', error)
-	// 		return error
-	// 	})
-	// 	.finally(() => {
-	// 		console.log('finally')
-	// 	})
+onMounted(() => {
+  testReq.pric()
+  	.then((response) => {
+			console.log('response', response)
+			dataReq.value = response.data
+		})
+		.catch((error) => {
+      console.log('catch', error)
+			return error
+		})
+		.finally(() => {
+			console.log('finally')
+		})
   console.log('data', testReq.pric())
 })
 </script>
