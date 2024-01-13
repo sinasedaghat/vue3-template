@@ -7,6 +7,7 @@
   const counter = useCounterStore()
   const { count: x, doubleCount: y } = storeToRefs(counter)
   const { count, doubleCount } = storeToRefs(counter)
+  const { increment } = counter
   const z: Ref<number> = ref(0)
   z.value = doubleCount.value / 2
 
@@ -68,6 +69,10 @@
     </button>
     <!-- counter.increment call -->
     <button @click="counter.increment()">
+      increase count use increment() counter from useCounterStore
+    </button>
+    <!-- increment call -->
+    <button @click="increment()">
       increase count use increment() useCounterStore
     </button>
   </div>
