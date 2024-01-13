@@ -10,15 +10,15 @@ export const useInfoStore = defineStore('info', () => {
     ip: '0.0.0.0'
   })
   const information = computed(() => {
-    console.log('call doubleCount computed', info.value)
+    console.log('call information computed', info.value)
     return info.value
   })
   function overallInfo(obj: any) {
     console.log('call overall Info function', obj)
     info.value = { ...info, ...obj}
   }
-  function partInfo(obj: any) {
-    console.log('call part Info function', obj)
+  function partInfo(key?: string, value?: string) {
+    console.log('call part Info function', key, value)
     // info.value = { ...info, ...obj}
   }
   function printInfo() {
