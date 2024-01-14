@@ -26,6 +26,11 @@
     <button class="button" @click="counter.decrease()">
       increase count use increment() useCounterStore
     </button>
+
+    <!-- counter.$reset() call -->
+    <button class="button" @click="counter.$reset()">
+      reset useCounterStore statemanagement use $reset() useCounterStore
+    </button>
   </div>
 </template>
 

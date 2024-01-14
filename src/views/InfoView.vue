@@ -37,7 +37,7 @@
     </div>
 
     <!-- button -->
-    <div class="center">
+    <div>
       <button class="button" @click="infoStore.partInfo()">
         increase count use increment() useCounterStore
       </button>
@@ -59,12 +59,5 @@
     &:hover {
       cursor: pointer;
     }
-  }
-
-  .center {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
   }
 </style>

@@ -21,7 +21,12 @@ const router = createRouter({
       path: '/info',
       name: 'info',
       component: () => import('../views/InfoView.vue')
-    }
+    },
+    {
+      path: '/counter',
+      name: 'counter',
+      component: () => import('../views/CounterView.vue')
+    },
   ]
 })
 
