@@ -1,6 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
+// import Header from '../views/multiple/HeaderView.vue'
+// import Footer from '../views/multiple/FooterView.vue'
+// import MultipleHomeView from '../views/multiple/HomeView.vue'
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -43,7 +47,21 @@ const router = createRouter({
           component: () => import('../views/parents/LastChildView.vue'),
         },
       ],
-    }
+    },
+    {
+      path: '/multiple',
+      name: 'multiple',
+      components: {
+        default: () => import('../views/multiple/HomeView.vue'),
+        Header: () => import('../views/multiple/Header.vue'),
+        Footer: () => import('../views/multiple/Footer.vue'),
+        // default: MultipleHomeView,
+        // // Header: Header,
+        // Header,
+        // // Footer: Footer,
+        // Footer,
+      }
+    },
   ]
 })
 
