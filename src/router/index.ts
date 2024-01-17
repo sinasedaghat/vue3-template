@@ -20,7 +20,29 @@ const router = createRouter({
     {
       path: '/parents',
       name: 'parents',
-      component: () => import('../views/ParentsView.vue')
+      component: () => import('../views/ParentsView.vue'),
+      children: [
+        {
+          path: '',
+          name: 'parents_home',
+          component: () => import('../views/parents/ParentsHomeView.vue'),
+        },
+        {
+          path: 'first_child',
+          name: 'first_child',
+          component: () => import('../views/parents/FirstChildView.vue'),
+        },
+        {
+          path: 'second_child',
+          name: 'second_child',
+          component: () => import('../views/parents/SecondChildView.vue'),
+        },
+        {
+          path: 'last_child',
+          name: 'last_child',
+          component: () => import('../views/parents/LastChildView.vue'),
+        },
+      ],
     }
   ]
 })
