@@ -13,6 +13,6 @@ import { RouterLink, RouterView } from 'vue-router'
   </header>
 
   <router-view class="multi-header" name="Header" />
-  <router-view class="multi-home" />
+  <router-view />
   <router-view class="multi-footer" name="Footer" />
 </template>
