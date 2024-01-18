@@ -62,6 +62,16 @@ const router = createRouter({
         // Footer,
       }
     },
+    {
+      path: '/dynamic',
+      name: 'dynamic',
+      component: () => import('../views/DynamicView.vue')
+    },
+    {
+      path: '/dynamic/:route',
+      name: 'dynamic_route',
+      component: () => import('../views/DynamicRouteView.vue')
+    },
   ]
 })
 
