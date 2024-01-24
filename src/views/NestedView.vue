@@ -11,14 +11,14 @@ const { printCosole, printString } = usePrint()
   <!-- printString call -->
   <div class="chip-green">
     <div class="striated">
-      <span class="subtitle">{{ printString('sina') }}</span>
+      <span class="subtitle">{{ printString('x+y') }}</span>
     </div>
   </div>
 
   <!-- printConsole call -->
   <div>
-    <button @click="printCosole('sina')">
-      console log value of 'sina' from sessionStorage
+    <button @click="printCosole('x+y')">
+      console log value of 'X + Y' from sessionStorage
     </button>
   </div>
 </template>

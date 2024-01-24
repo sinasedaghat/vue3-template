@@ -12,8 +12,12 @@ const router = createRouter({
     {
       path: '/nested',
       name: 'nested',
-      // component: 
       component: () => import('@/views/NestedView.vue')
+    },
+    {
+      path: '/reactive',
+      name: 'reactive',
+      component: () => import('@/views/ReactiveView.vue')
     },
   ]
 })

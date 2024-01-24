@@ -1,8 +1,15 @@
 <script setup lang="ts">
+import { onBeforeUnmount, computed, ref } from 'vue';
 import { useMouse } from '@/composables/mouse'
-import { computed, ref } from 'vue';
+import { useSessionStorage } from '@/composables/session_storage';
+  const { saveData } =  useSessionStorage()
   const { x, y } = useMouse()
   const xy = computed(() => x.value + y.value)
+
+  onBeforeUnmount(() => {
+    console.log('onBeforeUnmount from HomeView Component', xy.value)
+    saveData('x+y', xy.value.toString())
+  })
 </script>
 
 <template>
