@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import TheWelcome from '../components/TheWelcome.vue'
+import { useStaticData } from '@/stores/staticData'
+
+const staticData = useStaticData()
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+  {{ staticData.allStatics }}
 </template>

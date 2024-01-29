@@ -5,11 +5,11 @@ const dataReq: any = ref()
 
 onMounted(() => {
   testReq.pric()
-  	.then((response) => {
+  	.then((response: any) => {
 			console.log('response', response)
 			dataReq.value = response.data
 		})
-		.catch((error) => {
+		.catch((error: any) => {
       console.log('catch', error)
 			return error
 		})
