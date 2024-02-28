@@ -1,10 +1,14 @@
 import { persianNumber } from '@/data/persian_number'
 
-const toPersian = (str: string): string => {
+const toFaNumber = (input: string | number): string => {
+  return input.toString().replace(/\d/g, x => persianNumber[+x])
+}
 
-  return ''
+const toEnNumber = (input: string): string => {
+  return input.toString().replace(/[۰-۹]/g, x => persianNumber[x as keyof typeof persianNumber].toString())
 }
 
 export {
-  toPersian
+  toFaNumber,
+  toEnNumber
 }

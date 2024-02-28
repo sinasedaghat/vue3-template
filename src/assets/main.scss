@@ -106,6 +106,17 @@ button {
       color: white;
     }
   }
+  &.green {
+    border: 2px solid #42b883;
+    &.striated {
+      background-color: white;
+      color: #42b883;
+    }
+    &.bullet {
+      background-color: #42b883;
+      color: white;
+    }
+  }
   &:hover {
     cursor: default;
   }
