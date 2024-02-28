@@ -44,6 +44,14 @@ body {
   margin: 20px 100px;
 }
 
+.text-green {
+  color: #42b883 !important;
+}
+
+.text-blue {
+  color: #35495e !important;
+}
+
 .title {
   color: $secondary-color;
 }
@@ -287,4 +295,31 @@ input {
   &:hover {
     cursor: pointer;
   }
+}
+
+.border {
+  padding: 10px 16px; margin: 6px 0px;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 5px;
+  border-color: #35495e;
+  &.b-green {
+    border-color: #04ff00;
+  }
+  &.b-blue {
+    border-color: #00bbff;
+  }
+  &.b-red {
+    border-color: #dd1919;
+  }
+  &.b-yellow {
+    border-color: #fff700;
+  }
+  &.b-pink {
+    border-color: #ff00d0;
+  }
+}
+
+.c-pointer {
+  cursor: pointer !important;
 }
