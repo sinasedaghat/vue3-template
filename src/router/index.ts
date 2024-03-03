@@ -18,7 +18,12 @@ const router = createRouter({
       path: '/emits',
       name: 'emits',
       component: () => import('../views/EmitsView.vue')
-    }
+    },
+    {
+      path: '/vmodel',
+      name: 'vmodel',
+      component: () => import('../views/VModelView.vue')
+    },
   ]
 })
 

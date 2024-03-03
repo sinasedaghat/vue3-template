@@ -1,8 +1,13 @@
 <script setup lang="ts">
+  // const emit = defineEmits<{
+  //   (e: 'changeID', id: number): void
+  //   (e: 'updateVAL', value: string): void
+  // }>()
+
   const emit = defineEmits<{
-    (e: 'changeID', id: number): void
-    (e: 'updateVAL', value: string): void
-  }>()
+    changeID: [id: number]
+    updateVAL: [value: string]
+}>()
 </script>
 
 <template>

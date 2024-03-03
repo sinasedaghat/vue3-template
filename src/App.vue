@@ -8,6 +8,7 @@ import { RouterLink, RouterView } from 'vue-router'
       <RouterLink active-class="router-link-active" class="router-link" to="/">BASIC</RouterLink>
       <RouterLink active-class="router-link-active" class="router-link" to="/props">PROPS</RouterLink>
       <RouterLink active-class="router-link-active" class="router-link" to="/emits">EMITS</RouterLink>
+      <RouterLink active-class="router-link-active" class="router-link" to="/vmodel">V-MODEL</RouterLink>
     </nav>
   </header>
   <div style="margin: 50px;">
