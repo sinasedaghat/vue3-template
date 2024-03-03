@@ -295,6 +295,9 @@ input {
   &:hover {
     cursor: pointer;
   }
+  &.not-space {
+    margin: 10px 10px !important;
+  }
 }
 
 .border {

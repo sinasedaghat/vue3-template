@@ -13,6 +13,11 @@ const router = createRouter({
       path: '/props',
       name: 'props',
       component: () => import('../views/PropsView.vue')
+    },
+    {
+      path: '/emits',
+      name: 'emits',
+      component: () => import('../views/EmitsView.vue')
     }
   ]
 })
