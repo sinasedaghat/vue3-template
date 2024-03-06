@@ -24,6 +24,14 @@ const router = createRouter({
       name: 'vmodel',
       component: () => import('../views/VModelView.vue')
     },
+    {
+      path: '/fallthrough',
+      name: 'fallthrough',
+      component: () => import('../views/FallthroughView.vue')
+    },
+
+
+    // Fallthrough Attributes 
   ]
 })
 
