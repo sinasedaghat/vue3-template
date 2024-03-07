@@ -29,9 +29,11 @@ const router = createRouter({
       name: 'fallthrough',
       component: () => import('../views/FallthroughView.vue')
     },
-
-
-    // Fallthrough Attributes 
+    {
+      path: '/slot',
+      name: 'slot',
+      component: () => import('../views/SlotView.vue')
+    },
   ]
 })
 

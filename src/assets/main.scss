@@ -324,6 +324,22 @@ input {
   }
 }
 
+.boredr-left {
+  padding: 2px 8px; 
+  margin: 2px 0px;
+  border-width: 3px;
+  border-style: solid;
+  border-right: none !important;
+  border-top: none !important;
+  border-bottom: none !important;
+  &.green {
+    border-color: #42b883;
+  }
+  &.blue {
+    border-color: #35495e;
+  }
+}
+
 .c-pointer {
   cursor: pointer !important;
 }
