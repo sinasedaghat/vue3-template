@@ -1,6 +1,7 @@
 <script setup lang="ts">
+import { ref, type Ref } from 'vue'
 import HasSlot1 from '@/components/slot/HasSlot1.vue'
-import { ref, type Ref } from 'vue';
+import HasSlot2 from '@/components/slot/HasSlot2.vue'
   const msg: Ref<string> = ref('this text from SlotView.vue component use default slot')
   const slotNameTop: Ref<string> = ref('top-slot')
   const slotNameBottom: Ref<string> = ref('bottom-slot')
@@ -40,7 +41,7 @@ import { ref, type Ref } from 'vue';
         <h4 class="title text-green">This is HasSlot1 component (this text from SlotView.vue component use default slot)</h4>
       </template>
     </HasSlot1>
-    
+
     <HasSlot1 v-slot="{textDefault, idDefault}">
       <h4 class="title text-green">This is HasSlot1 component (this text from SlotView.vue component use default slot)</h4>
       <div class="boredr-left blue">
@@ -52,5 +53,20 @@ import { ref, type Ref } from 'vue';
         </p>
       </div>
     </HasSlot1>
+
+    <HasSlot2>
+      <h4 class="title text-green">This is message from SlotView component for HasSlot2's slot component</h4>
+      <!-- <template #item="item">
+        {{ item }} -->
+      <template #item="{id, title, subtitle, color}">
+        <div class="border b-pink">
+          <h3 class="title text-blue">{{ title }}</h3>
+          <p class="subtitle text-green inline-block">{{ subtitle }}</p>
+          <div :class="`chip bullet ${color}`">
+            ID from SlotView ===> <b>{{ id }}</b>
+          </div>
+        </div>
+      </template>
+    </HasSlot2>
   </div>
 </template>
