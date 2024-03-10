@@ -1,0 +1,345 @@
+/* @import './base.css';
+
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-weight: normal;
+}
+
+a,
+.green {
+  text-decoration: none;
+  color: hsla(160, 100%, 37%, 1);
+  transition: 0.4s;
+  padding: 3px;
+}
+
+@media (hover: hover) {
+  a:hover {
+    background-color: hsla(160, 100%, 37%, 0.2);
+  }
+}
+
+@media (min-width: 1024px) {
+  body {
+    display: flex;
+    place-items: center;
+  }
+
+  #app {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0 2rem;
+  }
+} */
+
+$button-color: #35495e;
+$primary-color: #42b883;
+$secondary-color: #35495e;
+
+body {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  width: fit-content;
+  margin: 20px 100px;
+}
+
+.text-green {
+  color: #42b883 !important;
+}
+
+.text-blue {
+  color: #35495e !important;
+}
+
+.title {
+  color: $secondary-color;
+}
+
+.subtitle {
+  color: $primary-color;
+  font-weight: 600;
+}
+
+.subtitle {
+  color: $primary-color;
+}
+
+button {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  border: 2px solid $button-color;
+  border-radius: 5px;
+  background-color: $button-color;
+  color: white;
+  margin: 50px 10px;
+  padding: 5px 9px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.chip-green {
+  display: inline-block;
+  .striated {
+    border: 2px solid #42b883;
+    border-radius: 100px;
+    background-color: white;
+    color: #42b883;
+    margin: 4px 10px;
+    padding: 5px 9px;
+  }
+  .bullet {
+    border: 2px solid #42b883;
+    border-radius: 100px;
+    background-color: #42b883;
+    color: white;
+    margin: 20px 10px;
+    padding: 5px 9px;
+  }
+}
+
+.chip {
+  display: inline-block;
+  border-radius: 100px;
+  margin: 4px 10px;
+  padding: 5px 9px;
+  &.blue {
+    border: 2px solid #35495e;
+    &.striated {
+      background-color: white;
+      color: #35495e;
+    }
+    &.bullet {
+      background-color: #35495e;
+      color: white;
+    }
+  }
+  &.green {
+    border: 2px solid #42b883;
+    &.striated {
+      background-color: white;
+      color: #42b883;
+    }
+    &.bullet {
+      background-color: #42b883;
+      color: white;
+    }
+  }
+  &:hover {
+    cursor: default;
+  }
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: start;
+  justify-content: start;
+  .item {
+    display: inline-block;
+    span{
+      &.label {
+        color: $secondary-color;
+      }
+    }
+  }
+}
+
+input {
+  &.input-text-field {
+    color: $secondary-color;
+    border: 1px solid $secondary-color;
+    border-radius: 5px;
+    margin: 4px 10px;
+    padding: 5px 9px;
+    &:focus {
+      color: $primary-color;
+      border: 1px solid $primary-color;
+    }
+  }
+}
+
+.router-link {
+  margin: 20px 5px;
+  padding: 5px 9px;
+  border: 2px solid #42b88300;
+  text-decoration: none;
+  color: $primary-color;
+  &:hover {
+    cursor: pointer;
+    // border-bottom: 2px solid $primary-color;
+    color: $secondary-color;
+  }
+}
+
+.router-link-active {
+  border-bottom: 2px solid $secondary-color;
+  color: $secondary-color;
+}
+
+.nav {
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 5px 9px;
+  border: 2px solid $secondary-color;
+  background-color: $secondary-color;
+  color: white;
+  span {
+    margin-right: 20px;
+  }
+  .link {
+    padding: 5px 9px;
+    border: 2px solid #42b88300;
+    text-decoration: none;
+    color: white;
+    &:hover {
+      cursor: pointer;
+      color: $primary-color;
+    }
+  }
+  .link-active {
+    border-bottom: 2px solid $primary-color;
+    color: $primary-color;
+  }
+}
+
+.side {
+  float: left;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: start;
+  justify-content: start;
+  &.small {
+    width: 20%;
+    div {
+      width: 100%;
+      height: 50vh;
+      border: 2px solid $secondary-color;
+      background-color: $secondary-color;
+      color: white;
+      border-radius: 5px;
+      margin-right: 5px;
+      padding: 5px 9px;
+    }
+  }
+  &.large {
+    width: 80%;
+    div {
+      width: 100%;
+      height: 50vh;
+      border: 2px solid $primary-color;
+      background-color: $primary-color;
+      color: $secondary-color;
+      border-radius: 5px;
+      margin-left: 5px;
+      padding: 5px 9px;
+    }
+  }
+}
+
+.multi-home {
+  width: 80vw;
+  height: 50vh;
+  margin: 5px 10px;
+  padding: 5px 9px;
+  border: 2px solid $secondary-color;
+  border-radius: 5px;
+  color: $secondary-color;
+}
+
+.multi-header {
+  width: 80vw;
+  height: 10vh;
+  margin: 30px 10px 5px;
+  padding: 5px 9px;
+  border: 2px solid $primary-color;
+  border-radius: 5px;
+  background-color: $primary-color;
+  color: $secondary-color;
+}
+
+.multi-footer {
+  width: 80vw;
+  height: 20vh;
+  margin: 5px 10px;
+  padding: 5px 9px;
+  border: 2px solid $secondary-color;
+  border-radius: 5px;
+  background-color: $secondary-color;
+  color: white;
+}
+
+.link-button {
+  display: inline-block;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  border: 2px solid $primary-color;
+  border-radius: 5px;
+  background-color: $primary-color;
+  text-decoration: none;
+  color: white;
+  margin: 50px 10px;
+  padding: 4px 9px;
+  &:hover {
+    cursor: pointer;
+  }
+  &.not-space {
+    margin: 10px 10px !important;
+  }
+}
+
+.border {
+  padding: 10px 16px; 
+  margin: 6px 0px;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 5px;
+  border-color: #35495e;
+  &.b-green {
+    border-color: #04ff00;
+  }
+  &.b-blue {
+    border-color: #00bbff;
+  }
+  &.b-red {
+    border-color: #dd1919;
+  }
+  &.b-yellow {
+    border-color: #fff700;
+  }
+  &.b-pink {
+    border-color: #ff00d0;
+  }
+}
+
+.boredr-left {
+  padding: 2px 8px; 
+  margin: 2px 0px;
+  border-width: 3px;
+  border-style: solid;
+  border-right: none !important;
+  border-top: none !important;
+  border-bottom: none !important;
+  &.green {
+    border-color: #42b883;
+  }
+  &.blue {
+    border-color: #35495e;
+  }
+}
+
+.c-pointer {
+  cursor: pointer !important;
+}
