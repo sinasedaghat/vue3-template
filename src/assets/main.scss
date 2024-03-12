@@ -52,6 +52,10 @@ body {
   color: #35495e !important;
 }
 
+.text-error {
+  color: #db2828 !important;
+}
+
 .title {
   color: $secondary-color;
 }
@@ -321,6 +325,12 @@ input {
   }
   &.b-pink {
     border-color: #ff00d0;
+  }
+  &.b-error{
+    border-color: #db2828;
+  }
+  &.b-success{
+    border-color: #42b883;
   }
 }
 
