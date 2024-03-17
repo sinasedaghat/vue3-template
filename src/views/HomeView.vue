@@ -28,7 +28,21 @@ import { computed, reactive, ref, type Ref } from 'vue';
     'text-blue': activeRef.value && !errorRef.value
   }))
 
-
+  const ChangeConditionRef = () => {
+    conditionRef.value = !conditionRef.value
+  }
+  const getEvent = (event: Event) => {
+    console.log('event object', event)
+  }
+  const getEventMESSAGE = (msg: string, event: Event) => {
+    console.log(msg, ' ===> ', event )
+  }
+  const logged = (msg: string) => {
+    console.log(msg)
+  }
+  const handleChange = (event: Event) => {
+    console.log('value of fontSize from input event', (event.target as HTMLInputElement).value)
+  }
 </script>
 
 <template>
@@ -62,7 +76,6 @@ import { computed, reactive, ref, type Ref } from 'vue';
     <input type="checkbox" label="activeRef" v-model="activeRef"><span class="subtitle text-blue" style="margin-right: 50px;">activeRef</span>
     <input type="checkbox" label="activeRef" v-model="errorRef"><span class="subtitle text-blue" style="margin-right: 50px;">errorRef</span>
     <span class="subtitle text-blue" style="margin-right: 8px;">fontSize</span><input type="number" v-model="fontSize">
-    <!--  -->
     <div :class="{ border: activeRef, 'text-error': errorRef }" style="margin-bottom: 30px;">
       <div class="border b-green">
         this element has optional class
@@ -135,7 +148,7 @@ import { computed, reactive, ref, type Ref } from 'vue';
       </div>
     </div>
 
-    <div class="border b-green" style="margin-bottom: 30px;">
+    <div class="border b-green">
       <template v-for="(item, index) in arrayObject" >
         <div
           v-if="!item.noMessage"
@@ -146,7 +159,42 @@ import { computed, reactive, ref, type Ref } from 'vue';
       </template>
     </div>
   </div>
-
+  <!-- event -->
+  <div class="border">
+    <h4 class="title">event</h4>
+    <button class="link-button not-space blue" @click="conditionRef = !conditionRef">CHANGE CONDITION REF INLINE</button>
+    <button class="link-button not-space green" @click="ChangeConditionRef">CHANGE CONDITION REF FUNCTION</button>
+    <br>
+    <button class="link-button not-space info" @click="logged('HELLO')">SHOW HELLO CONSOLE</button>
+    <button class="link-button not-space error" @click="logged('BYE')">SHOW BYE CONSOLE</button>
+    <br>
+    <button class="link-button not-space blue" @click="getEvent">SHOW EVENT CONSOLE</button>
+    <button class="link-button not-space blue" @click="getEventMESSAGE('this is event' ,$event)">SHOW EVENT & MESSAGE CONSOLE</button>
+    <br>
+    <span class="subtitle text-green" style="margin-right: 8px;">change <span class="text-blue">fontSize</span> for call @CHANGE event</span>
+    <input type="number" v-model="fontSize" @change="handleChange">
+    <div class="border b-pink">
+      <button class="link-button not-space info" @click="logged('BLUE')">
+        @click="logged('BLUE')"
+        <button class="link-button not-space error" @click="logged('RED')">@click="logged('RED')"</button>
+      </button>
+      <button class="link-button not-space info" @click="logged('BLUE')">
+        @click="logged('BLUE')"
+        <button class="link-button not-space error" @click.stop="logged('RED')">@click.stop="logged('RED')"</button>
+      </button>
+      <button class="link-button not-space info" @click.self="logged('BLUE')">
+        @click.self="logged('BLUE')"
+        <button class="link-button not-space error" @click="logged('RED')">@click="logged('RED')"</button>
+      </button>
+      <!-- https://chat.openai.com/share/b3b01228-48de-4d98-9fb9-51efaf94a828 -->
+      <br>
+      <button class="link-button not-space green" @click.once="logged('GREEN')">
+        @click.once="logged('GREEN')"
+      </button>
+      <br>
+      <a @click.prevent="logged('GOOGLE')" href="google.com">google.com (@click.prevent="logged('GOOGLE'))</a>
+    </div>
+  </div>
 
 
 </template>

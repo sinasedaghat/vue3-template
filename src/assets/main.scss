@@ -302,6 +302,22 @@ input {
   &.not-space {
     margin: 10px 10px !important;
   }
+  &.green {
+    background-color: #42b883 !important;
+    border-color: #42b883 !important;
+  }
+  &.blue {
+    background-color: #35495e !important;
+    border-color: #35495e !important;
+  }
+  &.error {
+    background-color: #db2828 !important;
+    border-color: #db2828 !important;
+  }
+  &.info {
+    background-color: #289fdb !important;
+    border-color: #289fdb !important;
+  }
 }
 
 .border {
