@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed, reactive, ref, type Ref } from 'vue';
+import { computed, onBeforeMount, onBeforeUnmount, onBeforeUpdate, onMounted, onUnmounted, onUpdated, reactive, ref, watch, watchEffect } from 'vue';
+import type { Ref } from 'vue';
   const refValue: Ref<string> = ref('REF Value String')
   const reactiveValue: {value: string} = reactive({
     value: 'REACTIVE Value String'
@@ -10,6 +11,11 @@ import { computed, reactive, ref, type Ref } from 'vue';
   const conditionRef: Ref<boolean> = ref(true)
   const borderClass: Ref<string> = ref('b-pink')
   const fontSize: Ref<number> = ref(10)
+  const lazyRef: Ref<string> = ref('lazy')
+  const numberRef: Ref<number> = ref(0)
+  const trimRef: Ref<string> = ref('trim')
+  const refWatch: Ref<string> = ref('old value')
+  const refObjectWatch: Ref<{[index: string]: string}> = ref({a: 'old value A', b: 'old value B'})
   const arrayObject = ref([{message: 'messageA'}, {message: 'messageB'}, {noMessage: true}])
   const objectObject = ref({a: {message: 'messageA'}, b: {message: 'messageB'}})
 
@@ -43,6 +49,86 @@ import { computed, reactive, ref, type Ref } from 'vue';
   const handleChange = (event: Event) => {
     console.log('value of fontSize from input event', (event.target as HTMLInputElement).value)
   }
+
+  watch(
+    refWatch,
+    () => {
+      console.log('[watch on refWatch (without old and new value)] refWatch ===> ', refWatch.value)
+    }
+  )
+  watch(
+    refWatch, 
+    (newValue) => {
+      console.log('[watch on refWatch with once option (with new value)] newValue ===> ', newValue)
+    }, 
+    {
+      once: true
+    }
+  )
+  watch(
+    () => `${refWatch.value} ${trimRef.value}`, 
+    (str) => {
+      console.log('[watch on refWatch + trimRef (with str = ${refWatch.value} ${trimRef.value})] ${refWatch.value} ${trimRef.value} ===> ', str)
+    }
+  )
+  watch(
+    [refWatch, trimRef], 
+    // [refWatch, () => trimRef.value], 
+    ([newValue1, newValue2]) => {
+      console.log('[watch on refWatch & trimRef (with newValue1 & newValue2)] newValue1 ===> ', newValue1, 'newValue2 ===> ', newValue2)
+    }
+  )
+  watch(
+    () => refObjectWatch.value.a, 
+    (newA) => {
+      console.log('[watch on refObjectWatch.value.a (with new value)] newA ===> ', newA)
+    }
+  )
+  watch(
+    refWatch, 
+    (newValue, oldValue) => {
+      console.log('[watch on refWatch with immediate option (with new value and old value)] newValue ===> ', newValue, 'oldValue ===> ', oldValue)
+    },
+    {
+      immediate: true
+    }
+  )
+  watch(
+    refObjectWatch, 
+    (newValue, oldValue) => {
+      console.log('[watch on refObjectWatch with deep option (with new value and old value)] newValue ===> ', newValue, 'oldValue ===> ', oldValue)
+    },
+    { 
+      deep: true 
+    }
+  )
+  watchEffect(() => {
+    console.log('use watchEffect for track change refWatch.value ===>', refWatch.value)
+    console.log('use watchEffect for track change trimRef.value ===>', trimRef.value)
+  })
+  
+
+  console.log('first message from out outside any Hook')
+  onBeforeMount(() => {
+    console.log('message from onBeforeMount Hook')
+  })
+  onMounted(() => {
+    console.log('message from onMounted Hook')
+  })
+  onBeforeUpdate(() => {
+    console.log('message from onBeforeUpdate Hook')
+  })
+  onUpdated(() => {
+    console.log('message from onUpdated Hook')
+  })
+  onBeforeUnmount(() => {
+    console.log('message from onBeforeUnmount Hook')
+  })
+  onUnmounted(() => {
+    console.log('message from onUnmounted Hook')
+  })
+  console.log('last message from out outside any Hook')
+  
 </script>
 
 <template>
@@ -193,8 +279,62 @@ import { computed, reactive, ref, type Ref } from 'vue';
       </button>
       <br>
       <a @click.prevent="logged('GOOGLE')" href="google.com">google.com (@click.prevent="logged('GOOGLE'))</a>
+      <br style="margin-bottom: 16px !important;">
+      <span class="subtitle text-blue" style="margin-right: 8px;"><span class="text-green">Enter</span> key event (@keyup.enter)</span> |
+      <span class="subtitle text-blue" style="margin-right: 8px;"><span class="text-green">ArrowDown</span> key event (keydown.arrow-down.prevent)</span> |
+      <span class="subtitle text-blue" style="margin-right: 8px;"><span class="text-green">ArrowUp</span> key event (keydown.arrow-up)</span> 
+      <input 
+        type="number" 
+        v-model="fontSize" 
+        @keyup.enter="logged('keyup.enter')"
+        @keydown.arrow-up="logged('keydown.arrow-up')"
+        @keydown.arrow-down.prevent="logged('keydown.arrow-down.prevent')"
+      >
+      <br>
+      <button class="link-button not-space error" @click.shift="logged('click.shift')">@click.shift="logged('click.shift')"</button>
+      <button class="link-button not-space green" @click.exact="logged('click.exact')">@click.exact="logged('click.exact')"</button>
+      <br>
+      <button class="link-button not-space info" @click.control="logged('click.ctrl')">@click.ctrl="logged('click.ctrl')" | @click.shift="logged('click.ctrl')" | @click.alt="logged('click.ctrl')" </button>
     </div>
   </div>
+  <!-- form -->
+  <div class="border">
+    <h4 class="title">form</h4>
+    <label class="subtitle text-green" style="margin-right: 8px;" for="lazy">v-model.lazy (after unfocus value update)</label>
+    <input id="lazy" v-model.lazy="lazyRef">
+    <span class="subtitle text-blue" style="margin-left: 8px;">lazyRef ===> {{ lazyRef.toUpperCase() }}</span>
+    <br style="margin-bottom: 8px;">
+    <label class="subtitle text-green" style="margin-right: 8px;" for="number">v-model.number (type of this mode is number)</label>
+    <input v-model.number="numberRef" />
+    <span class="subtitle text-blue" style="margin-left: 8px;">numberRef ===> {{ numberRef }} : {{ (typeof numberRef).toUpperCase() }}</span>
+    <br style="margin-bottom: 8px;">
+    <label class="subtitle text-green" style="margin-right: 8px;" for="trim">v-model.trim (remove white space)</label>
+    <input v-model.trim="trimRef" />
+    <span class="subtitle text-blue" style="margin-left: 8px;">trimRef ===> "{{ trimRef }}"</span>
+  </div>
+  <!-- lifecycle -->
+  <div class="border">
+    <h4 class="title">lifecycle</h4>
+    <span class="subtitle"> See your browser console</span>
+  </div>
+  <!-- watch -->
+  <div class="border">
+    <h4 class="title">watch</h4>
+    <button 
+      class="link-button not-space error" 
+      @click="
+        (refWatch = 'old value'), 
+        (refObjectWatch.a = 'old value A'),
+        (refObjectWatch.b = 'old value B')
+      "
+    >
+      reset all value in sction
+    </button>
+    <br>
+    <button class="link-button not-space info" @click="refWatch = 'new value'">change <span class="text-blue">refWatch</span> see your browser console</button>
+    <br>
+    <button class="link-button not-space green" @click="refObjectWatch.a = 'new value A'">change <span class="text-blue">refObjectWatch.a</span> see your browser console</button>
+    <button class="link-button not-space green" @click="refObjectWatch.b = 'new value B'">change <span class="text-blue">refObjectWatch.b</span> see your browser console</button>
 
-
+  </div>
 </template>
