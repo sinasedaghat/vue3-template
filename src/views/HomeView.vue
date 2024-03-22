@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onBeforeMount, onBeforeUnmount, onBeforeUpdate, onMounted, onUnmounted, onUpdated, reactive, ref, watch, watchEffect } from 'vue';
 import type { Ref } from 'vue';
+import ForTestRef from '@/components/ForTestRef.vue'
   const refValue: Ref<string> = ref('REF Value String')
   const reactiveValue: {value: string} = reactive({
     value: 'REACTIVE Value String'
@@ -18,6 +19,9 @@ import type { Ref } from 'vue';
   const refObjectWatch: Ref<{[index: string]: string}> = ref({a: 'old value A', b: 'old value B'})
   const arrayObject = ref([{message: 'messageA'}, {message: 'messageB'}, {noMessage: true}])
   const objectObject = ref({a: {message: 'messageA'}, b: {message: 'messageB'}})
+  const titleRefs: Ref<HTMLElement | null> = ref(null)
+  const loopItemsRef: Ref<HTMLElement[] | []> = ref([])
+  const ForTestRefChild: Ref<InstanceType<typeof ForTestRef> | null> = ref(null)
 
   const computedValue = computed<string>(() => 'COMPUTED Value String')
   const priceComputed = computed<string>({
@@ -58,6 +62,7 @@ import type { Ref } from 'vue';
   )
   watch(
     refWatch, 
+    // () => refWatch.value,
     (newValue) => {
       console.log('[watch on refWatch with once option (with new value)] newValue ===> ', newValue)
     }, 
@@ -106,7 +111,6 @@ import type { Ref } from 'vue';
     console.log('use watchEffect for track change refWatch.value ===>', refWatch.value)
     console.log('use watchEffect for track change trimRef.value ===>', trimRef.value)
   })
-  
 
   console.log('first message from out outside any Hook')
   onBeforeMount(() => {
@@ -114,6 +118,9 @@ import type { Ref } from 'vue';
   })
   onMounted(() => {
     console.log('message from onMounted Hook')
+    console.log('access DOM elemnt with ref attribute: titleRefs ===> ', titleRefs.value)
+    console.log('access DOM elemnts (loop) with ref attribute: loopItemsRef ===> ', loopItemsRef.value)
+    console.log('access Child Component with ref attribute: ForTestRefChild ===> ', ForTestRefChild.value)
   })
   onBeforeUpdate(() => {
     console.log('message from onBeforeUpdate Hook')
@@ -335,6 +342,33 @@ import type { Ref } from 'vue';
     <br>
     <button class="link-button not-space green" @click="refObjectWatch.a = 'new value A'">change <span class="text-blue">refObjectWatch.a</span> see your browser console</button>
     <button class="link-button not-space green" @click="refObjectWatch.b = 'new value B'">change <span class="text-blue">refObjectWatch.b</span> see your browser console</button>
+  </div>
 
+  <!-- refs -->
+  <div class="border">
+    <h4 class="title" ref="titleRefs">ref</h4>
+    <span class="subtitle text-green">
+      titleRefs?.outerHTML ===> <span class="text-blue">{{ titleRefs?.outerHTML }}</span>
+    </span>
+    <div class="border b-pink" style="margin-bottom: 30px;">
+      <div
+        v-for="({message}, index) in arrayObject" ref="loopItemsRef"
+          class="chip green bullet"
+        >
+        {{ index }} ==> {{ message }}
+      </div>
+      {{ loopItemsRef }}
+    </div>
+
+    <ForTestRef ref="ForTestRefChild" />
+    <span class="subtitle text-green">testVariable from ForTestRef child component in parent ====> <span class="text-blue">{{ ForTestRefChild?.testVariable }}</span></span>
+    <br>
+    <button 
+      class="link-button not-space info" 
+      @click="ForTestRefChild?.testFunction('from Parent')"
+    >
+      call <span class="text-blue">testFunction</span> from ForTestRef child component in parent
+    </button>
+    
   </div>
 </template>
